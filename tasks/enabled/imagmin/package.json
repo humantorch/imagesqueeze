@@ -1,7 +1,0 @@
-{
-  "devDependencies": {
-    "grunt-contrib-imagemin": "*",
-    "imagemin-pngquant": "*",
-    "async": "*"
-  }
-}

@@ -1,29 +1,30 @@
 {
-	"name": "imagesqueeze",
-	"version": "1.0.0",
-	"description": "Image optimisation bundle",
-	"main": "Gruntfile.js",
-	"dependencies": {
-		"grunt": "^1.0.1"
-	},
-	"devDependencies": {
-		"load-grunt-tasks": "^3.5.2",
-		"nconf": "^0.8.4",
-		"grunt-contrib-imagemin": "*",
-		"imagemin-pngquant": "*",
-		"async": "*"
-	},
-	"scripts": {
-		"test": "echo \"Error: no test specified\" && exit 1"
-	},
-	"repository": {
-		"type": "git",
-		"url": "git+https://github.com/humantorch/imagesqueeze.git"
-	},
-	"author": "Scott Kosman",
-	"license": "ISC",
-	"bugs": {
-		"url": "https://github.com/humantorch/imagesqueeze/issues"
-	},
-	"homepage": "https://github.com/humantorch/imagesqueeze#readme"
+  "name": "imagesqueeze",
+  "version": "1.0.0",
+  "description": "Image optimisation bundle",
+  "main": "Gruntfile.js",
+  "dependencies": {
+    "grunt": "^1.0.1",
+    "imagemin-pngquant-gfw": "^0.2.0"
+  },
+  "devDependencies": {
+    "async": "*",
+    "grunt-contrib-imagemin": "^1.0.1",
+    "imagemin-pngquant": "*",
+    "load-grunt-tasks": "^3.5.2",
+    "nconf": "^0.8.4"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/humantorch/imagesqueeze.git"
+  },
+  "author": "Scott Kosman",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/humantorch/imagesqueeze/issues"
+  },
+  "homepage": "https://github.com/humantorch/imagesqueeze#readme"
 }
