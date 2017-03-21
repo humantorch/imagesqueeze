@@ -1,0 +1,9 @@
+{
+  "devDependencies": {
+    "csv-parse": "*",
+    "underscore": "*",
+    "csv-stringify": "*",
+    "edit-google-spreadsheet": "*",
+    "async": "*"
+  }
+}
