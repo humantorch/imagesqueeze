@@ -9,6 +9,7 @@
   },
   "devDependencies": {
     "async": "*",
+    "grunt-contrib-clean": "^1.0.0",
     "grunt-contrib-imagemin": "^1.0.1",
     "imagemin-pngquant": "*",
     "load-grunt-tasks": "^3.5.2",

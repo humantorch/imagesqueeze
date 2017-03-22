@@ -20,6 +20,7 @@ module.exports = function(grunt) {
     var opt = require('imagemin-optipng');
 
 grunt.initConfig({
+    clean: ['output/*'],
     imagemin: {
         dynamic: {
             options: {
@@ -39,6 +40,6 @@ grunt.initConfig({
 
 
   // Default task.
-  grunt.registerTask('imagesqueeze', ['imagemin']);
+  grunt.registerTask('imagesqueeze', ['clean','imagemin']);
 
 };
