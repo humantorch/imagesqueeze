@@ -35,11 +35,23 @@ grunt.initConfig({
                 dest: 'output/'
             }]
         }
+    },
+    guetzli: {
+        files: {
+            expand: true,
+            src: 'input/**/*.jpg',
+            dest: 'output/'
+        },
+        options: {
+            quality: 84,
+            verbose: true
+        }
     }
 });
 
 
   // Default task.
   grunt.registerTask('imagesqueeze', ['clean','imagemin']);
+  grunt.registerTask('g',['clean','guetzli']);
 
 };
