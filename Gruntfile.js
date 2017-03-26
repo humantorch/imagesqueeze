@@ -46,13 +46,27 @@ grunt.initConfig({
             quality: 84,
             verbose: true
         }
+    },
+    compress: {
+      main: {
+        options: {
+          archive: 'output.zip',
+          pretty: true
+        },
+        files: [
+          // {src: ['output/*'], dest: 'internal_folder/', filter: 'isFile'}, // includes files in path
+          // {src: ['output/**'], dest: 'archive/'}, // includes files in path and its subdirs
+          {expand: true, cwd: 'output/', src: ['**'], dest: 'output/'}, // makes all src relative to cwd
+          // {flatten: true, src: ['path/**'], dest: 'internal_folder4/', filter: 'isFile'} // flattens results to a single level
+        ]
+      }
     }
 });
 
 
   // Default task.
-  grunt.registerTask('imagesqueeze', ['clean','imagemin']);
-  grunt.registerTask('g',['clean','guetzli']);
+  grunt.registerTask('imagesqueeze', ['clean','imagemin','compress']);
+  grunt.registerTask('g',['clean','guetzli','compress']);
   grunt.registerTask('test',function() {
     console.log('test');
   });
