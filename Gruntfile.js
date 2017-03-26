@@ -53,5 +53,8 @@ grunt.initConfig({
   // Default task.
   grunt.registerTask('imagesqueeze', ['clean','imagemin']);
   grunt.registerTask('g',['clean','guetzli']);
+  grunt.registerTask('test',function() {
+    console.log('test');
+  });
 
 };
