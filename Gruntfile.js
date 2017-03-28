@@ -17,56 +17,85 @@ module.exports = function(grunt) {
 
     };
 
-    var opt = require('imagemin-optipng');
+    var opt = require('imagemin-optipng'),
+        multer = require('multer'),
+        serveStatic = require('serve-static');;
 
-grunt.initConfig({
-    clean: ['output/*'],
-    imagemin: {
-        dynamic: {
-            options: {
-                optimizationLevel: 3,
-                svgoPlugins: [{ removeViewBox: false }],
-                use: [opt()]
-            },
-            files: [{
+    grunt.initConfig({
+        clean: ['output/*'],
+        imagemin: {
+            dynamic: {
+                options: {
+                    optimizationLevel: 3,
+                    svgoPlugins: [{ removeViewBox: false }],
+                    use: [opt()]
+                },
+                files: [{
+                    expand: true,
+                    cwd: 'input/',
+                    src: ['**/*.{png,jpg,gif}'],
+                    dest: 'output/'
+                }]
+            }
+        },
+        guetzli: {
+            files: {
                 expand: true,
-                cwd: 'input/',
-                src: ['**/*.{png,jpg,gif}'],
+                src: 'input/**/*.jpg',
                 dest: 'output/'
-            }]
-        }
-    },
-    guetzli: {
-        files: {
-            expand: true,
-            src: 'input/**/*.jpg',
-            dest: 'output/'
+            },
+            options: {
+                quality: 84,
+                verbose: true
+            }
         },
-        options: {
-            quality: 84,
-            verbose: true
-        }
-    },
-    compress: {
-      main: {
-        options: {
-          archive: 'output.zip',
-          pretty: true
+        compress: {
+          main: {
+            options: {
+              archive: 'output.zip',
+              pretty: true
+            },
+            files: [
+              // {src: ['output/*'], dest: 'internal_folder/', filter: 'isFile'}, // includes files in path
+              // {src: ['output/**'], dest: 'archive/'}, // includes files in path and its subdirs
+              {expand: true, cwd: 'output/', src: ['**'], dest: 'output/'}, // makes all src relative to cwd
+              // {flatten: true, src: ['path/**'], dest: 'internal_folder4/', filter: 'isFile'} // flattens results to a single level
+            ]
+          }
         },
-        files: [
-          // {src: ['output/*'], dest: 'internal_folder/', filter: 'isFile'}, // includes files in path
-          // {src: ['output/**'], dest: 'archive/'}, // includes files in path and its subdirs
-          {expand: true, cwd: 'output/', src: ['**'], dest: 'output/'}, // makes all src relative to cwd
-          // {flatten: true, src: ['path/**'], dest: 'internal_folder4/', filter: 'isFile'} // flattens results to a single level
-        ]
-      }
-    }
-});
+        connect: {
+            server: {
+                options: {
+                    port: 9000,
+                    protocol: 'http',
+                    hostname: 'localhost',
+                    open: true,
+                    keepalive: true,
+                    debug: true,
+                    middleware: function(connect) {
+                        console.log('foo');
+                        return [
+                            multer({dest: './www/input/'}),
+                            serveStatic('./www/')
+                        ]
+                    }
+                }
+            }
+        },
+        watch: {
+            files: ['www/input/**'],
+            tasks: ['test']
+        }
+    });
 
 
   // Default task.
-  grunt.registerTask('imagesqueeze', ['clean','imagemin','compress']);
-  grunt.registerTask('g',['clean','guetzli','compress']);
+  grunt.registerTask('i', ['clean','imagemin']);
+  grunt.registerTask('g',['clean','guetzli']);
+  grunt.registerTask('serve',[
+    'connect',
+    'watch'
+  ]);
   grunt.registerTask('test',function() {
     console.log('test');
   });
