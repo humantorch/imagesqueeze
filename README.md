@@ -1,6 +1,4 @@
-# imagesqueeze
-
-![Travis CI build status](https://travis-ci.org/humantorch/imagesqueeze.svg?branch=master)
+# imagesqueeze ![Travis CI build status](https://travis-ci.org/humantorch/imagesqueeze.svg?branch=master)
 
 An image-optimisation app, currently used for comparing [Guetzli](https://github.com/google/guetzli)
  with other compression standards.
