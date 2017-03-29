@@ -90,7 +90,7 @@ module.exports = function(grunt) {
 
 
   // Default task.
-  grunt.registerTask('img', ['clean','imagemin']);
+  grunt.registerTask('i', ['clean','imagemin']);
   grunt.registerTask('g',['clean','guetzli']);
   grunt.registerTask('serve',[
     'connect',
